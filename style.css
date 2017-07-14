@@ -1,5 +1,10 @@
+#gameArea{
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .square{
 	width: 100px;
 	height: 100px;
-	margin-top: 5px;
+	margin: 5px 0px 0px 5px;
 }
