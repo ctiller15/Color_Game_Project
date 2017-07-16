@@ -11,29 +11,28 @@ var numSquares = 3;
 var score = 0;
 
 // selecting the important elements
-var infoText = document.querySelector("p");
-var colorHead = document.querySelector("h2");
-var resetButton = document.querySelector("button");
-var gameArea = document.querySelector("#gameArea");
-var scoreArea = document.querySelector(".scoreVal");
+var infoText = $(".info");
+var colorHead = $("h2");
+var resetButton = $("button");
+var gameArea = $("#gameArea");
+var scoreArea = $(".scoreVal");
 
 // Selecting the inputs for the number of squares and the difficulty.
-var numInput = document.querySelector("input[type=number]");
-var diffInput = document.querySelector("input[type=range]");
+var numInput = $("input[type=number]");
+var diffInput = $("input[type=range]");
 
 // starting with a set number of squares.
-numInput.value = numSquares;
+numInput.val(numSquares);
 // and a set difficulty.
-diffInput.value = difficulty;
+diffInput.val(difficulty);
 
 // creating all of the square divs.
 function createSquares(num){
-	gameArea.innerHTML = "";
+	gameArea.html("");
 	// Creating a div for each square, adding a class, and then adding it back into the div.
 	for(var i = 0; i < numSquares; i++){
-		var sqDiv = document.createElement("div");
-		sqDiv.classList.add("square");
-		gameArea.appendChild(sqDiv);
+		var sqDiv = $("<div class='square'></div>");
+		gameArea.append(sqDiv);
 	}
 }
 
@@ -52,24 +51,26 @@ function randomizeColors(sqList, diff){
 
 // Picks a single color out of the existing colors, and makes that value the correct answer.
 function pickSquare(sqList){
-	var pickedSquare = sqList[Math.floor(Math.random() * sqList.length)];
-	var sqColor = pickedSquare.style.backgroundColor;
-	colorHead.textContent = pickedSquare.style.backgroundColor;
+	var pickedSquare = $(sqList[Math.floor(Math.random() * sqList.length)]);
+	var sqColor = pickedSquare.css("background-color");
+	colorHead.text(pickedSquare.css("background-color"));
 	return sqColor;	
 }
 
+// Something weird going on here. Check it later!
 function resetColors(){
 	// Resets all of the colors for the game.
 	randomizeColors(squares, difficulty);
 	correctColor = pickSquare(squares);
 }
 
+// Something weird going on here. Check it later!
 function resetGame(){
 	// Completely resets the entire game from scratch.
 	createSquares(numSquares);
 	squares = document.querySelectorAll(".square");
 	resetColors();
-	infoText.textContent = "click a color";
+	infoText.text("click a color");
 }
 
 // This function generates a random number between 0 and 256 if no arguments are given.
@@ -99,28 +100,28 @@ function populateSquares(sqList, sr, sg, sb, rng){
 		square.style.backgroundColor = rgbVal;
 		square.addEventListener("click", function(){
 			if(square.style.backgroundColor === correctColor){
-				infoText.textContent = "CORRECT!!!";
+				infoText.text("CORRECT!!!");
 				score += 1;
-				scoreArea.textContent = score
+				scoreArea.text(score);
 			} else {
-				infoText.textContent = "BZZ! WRONG! That color was " + square.style.backgroundColor;
+				infoText.text("BZZ! WRONG! That color was " + square.style.backgroundColor);
 			}
 		}, false);
 	});		
 }
 
 function endGame(sqList){
-	
+
 }
 
 resetGame();
 
-resetButton.addEventListener("click", resetGame);
+resetButton.on("click", resetGame);
 
-numInput.addEventListener("change", function(e){
+numInput.on("change", function(e){
 	numSquares = Number(this.value);
 });
 
-diffInput.addEventListener("change", function(e){
+diffInput.on("change", function(e){
 	difficulty = Number(this.value);
 });
