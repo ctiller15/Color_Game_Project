@@ -4,6 +4,8 @@ var red;
 var green;
 var blue;
 var correctColor;
+
+// Initializing game variables
 var difficulty = 1;
 var numSquares = 3;
 var score = 0;
@@ -13,19 +15,21 @@ var infoText = document.querySelector("p");
 var colorHead = document.querySelector("h2");
 var resetButton = document.querySelector("button");
 var gameArea = document.querySelector("#gameArea");
-var scoreArea = document.querySelector(".score");
+var scoreArea = document.querySelector(".scoreVal");
 
+// Selecting the inputs for the number of squares and the difficulty.
 var numInput = document.querySelector("input[type=number]");
 var diffInput = document.querySelector("input[type=range]");
 
 // starting with a set number of squares.
-numInput.value = 3;
+numInput.value = numSquares;
 // and a set difficulty.
-diffInput.value = 1;
+diffInput.value = difficulty;
 
 // creating all of the square divs.
 function createSquares(num){
 	gameArea.innerHTML = "";
+	// Creating a div for each square, adding a class, and then adding it back into the div.
 	for(var i = 0; i < numSquares; i++){
 		var sqDiv = document.createElement("div");
 		sqDiv.classList.add("square");
@@ -38,6 +42,7 @@ function randomizeColors(sqList, diff){
 	startRed = limitColor();
 	startGreen = limitColor();
 	startBlue = limitColor();
+	// Checking the difficulty level, and setting up the game based on that.
 	if(diff === 1){	
 		populateSquares(sqList);
 	} else if(diff === 2){
@@ -54,17 +59,22 @@ function pickSquare(sqList){
 }
 
 function resetColors(){
+	// Resets all of the colors for the game.
 	randomizeColors(squares, difficulty);
 	correctColor = pickSquare(squares);
 }
 
 function resetGame(){
+	// Completely resets the entire game from scratch.
 	createSquares(numSquares);
 	squares = document.querySelectorAll(".square");
 	resetColors();
 	infoText.textContent = "click a color";
 }
 
+// This function generates a random number between 0 and 256 if no arguments are given.
+// If initColor and rng are given, it finds a number within the range of the initial
+// number.
 function limitColor(initColor, rng){
 	var start = initColor || 128;
 	var range = rng || 128;
@@ -77,6 +87,8 @@ function limitColor(initColor, rng){
 	return newColor;	
 }
 
+// populates the game area with all of the squares.
+// Adds all initial color values and all event listeners.
 function populateSquares(sqList, sr, sg, sb, rng){
 	// Randomizing the rgb values for every single square.
 	sqList.forEach(function(square){
@@ -89,12 +101,16 @@ function populateSquares(sqList, sr, sg, sb, rng){
 			if(square.style.backgroundColor === correctColor){
 				infoText.textContent = "CORRECT!!!";
 				score += 1;
-				scoreArea.textContent = "Current Score: " + score + " points!"
+				scoreArea.textContent = score
 			} else {
 				infoText.textContent = "BZZ! WRONG! That color was " + square.style.backgroundColor;
 			}
-		});
+		}, false);
 	});		
+}
+
+function endGame(sqList){
+	
 }
 
 resetGame();
