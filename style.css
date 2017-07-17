@@ -1,3 +1,7 @@
+h1{
+	display: none;
+}
+
 #gameArea{
 /*	display: flex;
 	flex-wrap: wrap;*/

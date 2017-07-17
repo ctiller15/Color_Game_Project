@@ -47,13 +47,14 @@ function randomizeColors(sqList, diff){
 	} else if(diff === 2){
 		populateSquares(sqList, startRed, startGreen, startBlue, 75);
 	}
+	setAnswer();
 }
 
 // Picks a single color out of the existing colors, and makes that value the correct answer.
 function pickSquare(sqList){
 	var pickedSquare = $(sqList[Math.floor(Math.random() * sqList.length)]);
 	var sqColor = pickedSquare.css("background-color");
-	colorHead.text(pickedSquare.css("background-color"));
+	colorHead.text("Find: " + pickedSquare.css("background-color"));
 	return sqColor;	
 }
 
@@ -68,9 +69,10 @@ function resetColors(){
 function resetGame(){
 	// Completely resets the entire game from scratch.
 	createSquares(numSquares);
+	// ensuring that squares is defined before calling resetColors.
 	squares = document.querySelectorAll(".square");
 	resetColors();
-	infoText.text("click a color");
+	infoText.text("");
 }
 
 // This function generates a random number between 0 and 256 if no arguments are given.
@@ -98,16 +100,22 @@ function populateSquares(sqList, sr, sg, sb, rng){
 		blue = limitColor(sb, rng);
 		var rgbVal = "rgb(" + red + ", " + green + ", " + blue + ")";
 		square.style.backgroundColor = rgbVal;
-		square.addEventListener("click", function(){
-			if(square.style.backgroundColor === correctColor){
-				infoText.text("CORRECT!!!");
-				score += 1;
-				scoreArea.text(score);
-			} else {
-				infoText.text("BZZ! WRONG! That color was " + square.style.backgroundColor);
-			}
-		}, false);
 	});		
+}
+
+function setAnswer(){
+	$(".square").on("click", function(){
+		if($(this).css("background-color") === correctColor){
+			// If they get the correct color, the round ends.
+			// At this point if they want to do another they would have to click reset.
+			infoText.text("CORRECT!!!");
+			score += 1;
+			scoreArea.text(score);
+			$(".square").off();
+		} else {
+			infoText.text("BZZ! WRONG! That color was " + $(this).css("background-color"));
+		}
+	});
 }
 
 function endGame(sqList){
@@ -125,3 +133,4 @@ numInput.on("change", function(e){
 diffInput.on("change", function(e){
 	difficulty = Number(this.value);
 });
+
