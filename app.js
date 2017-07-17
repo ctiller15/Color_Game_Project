@@ -13,7 +13,7 @@ var score = 0;
 // selecting the important elements
 var infoText = $(".info");
 var colorHead = $("h2");
-var resetButton = $("button");
+var resetButton = $(".reset");
 var gameArea = $("#gameArea");
 var scoreArea = $(".scoreVal");
 
@@ -73,6 +73,8 @@ function resetGame(){
 	squares = document.querySelectorAll(".square");
 	resetColors();
 	infoText.text("");
+	// Resetting the reset button.
+	resetButton.text("reset");
 }
 
 // This function generates a random number between 0 and 256 if no arguments are given.
@@ -103,6 +105,7 @@ function populateSquares(sqList, sr, sg, sb, rng){
 	});		
 }
 
+// Handles what happens if the answer to the current puzzle is clicked, or if it is missed.
 function setAnswer(){
 	$(".square").on("click", function(){
 		if($(this).css("background-color") === correctColor){
@@ -112,6 +115,8 @@ function setAnswer(){
 			score += 1;
 			scoreArea.text(score);
 			$(".square").off();
+			$(".square").css("background-color", correctColor);
+			resetButton.text("Another?");
 		} else {
 			infoText.text("BZZ! WRONG! That color was " + $(this).css("background-color"));
 		}
