@@ -102,13 +102,18 @@ function populateSquares(sqList, sr, sg, sb, rng){
 		blue = limitColor(sb, rng);
 		var rgbVal = "rgb(" + red + ", " + green + ", " + blue + ")";
 		square.style.backgroundColor = rgbVal;
+		var divwidth = $(".square").width();
+		$(".square").css("height", divwidth + "px");
 	});		
 }
 
 // Handles what happens if the answer to the current puzzle is clicked, or if it is missed.
 function setAnswer(){
 	$(".square").on("click", function(){
-		if($(this).css("background-color") === correctColor){
+		var sqCol = $(this).css("background-color");
+		sqColText = "<span class='sqColText'>rgb</span>" + "<br>" + sqCol.slice(3, -1) + ")";
+		console.log(sqColText);
+		if(sqCol === correctColor){
 			// If they get the correct color, the round ends.
 			// At this point if they want to do another they would have to click reset.
 			infoText.text("CORRECT!!!");
@@ -118,7 +123,11 @@ function setAnswer(){
 			$(".square").css("background-color", correctColor);
 			resetButton.text("Another?");
 		} else {
-			infoText.text("BZZ! WRONG! That color was " + $(this).css("background-color"));
+			infoText.text("incorrect");
+			$(this).html("<p class='incorrectText'>" + sqColText + "</p>");
+			$(this).css("color", sqCol);
+			$(this).css("background-color", "rgba(0, 0, 0, 0.0)");
+			$(this).off();
 		}
 	});
 }

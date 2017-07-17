@@ -11,7 +11,9 @@ h1{
 
 .square{
 	width: 30%;
-	padding-bottom: 30%;
 	float: left;
 	margin: 1.66%;
+	font-size: .75em;
+	text-align: center;
+	font-weight: bold;
 }
