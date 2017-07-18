@@ -18,11 +18,10 @@ var gameArea = $("#gameArea");
 var scoreArea = $(".scoreVal");
 
 // Selecting the inputs for the number of squares and the difficulty.
-var numInput = $("input[type=number]");
 var diffInput = $("input[type=range]");
 
 // starting with a set number of squares.
-numInput.val(numSquares);
+// numInput.val(numSquares);
 // and a set difficulty.
 diffInput.val(difficulty);
 
@@ -46,6 +45,9 @@ function randomizeColors(sqList, diff){
 		populateSquares(sqList);
 	} else if(diff === 2){
 		populateSquares(sqList, startRed, startGreen, startBlue, 75);
+	}
+	else if(diff === 3){
+		populateSquares(sqList, startRed, startGreen, startBlue, 30);	
 	}
 	setAnswer();
 }
@@ -112,7 +114,6 @@ function setAnswer(){
 	$(".square").on("click", function(){
 		var sqCol = $(this).css("background-color");
 		sqColText = "<span class='sqColText'>rgb</span>" + "<br>" + sqCol.slice(3, -1) + ")";
-		console.log(sqColText);
 		if(sqCol === correctColor){
 			// If they get the correct color, the round ends.
 			// At this point if they want to do another they would have to click reset.
@@ -121,6 +122,7 @@ function setAnswer(){
 			scoreArea.text(score);
 			$(".square").off();
 			$(".square").css("background-color", correctColor);
+			$(".incorrectText").css("display", "none");
 			resetButton.text("Another?");
 		} else {
 			infoText.text("incorrect");
@@ -140,8 +142,18 @@ resetGame();
 
 resetButton.on("click", resetGame);
 
-numInput.on("change", function(e){
-	numSquares = Number(this.value);
+$(".lower").on("click", function(){
+	if(numSquares > 3){
+		numSquares -= 3;
+		$(".num").text(numSquares);
+	}
+});
+
+$(".higher").on("click", function(){
+	if(numSquares < 15){
+		numSquares += 3;
+		$(".num").text(numSquares);
+	}
 });
 
 diffInput.on("change", function(e){

@@ -31,6 +31,41 @@ h1{
 	height: 5vh;
 	border-bottom: 1px solid black;
 }
+.numBoxes{
+	display: flex;
+}
+.rangeSlider{
+	display: flex;
+}
+
+/*All of this below styles the slider.*/
+input[type=range] {
+  width: 100%;
+  margin: auto 0;
+}
+input[type=range]::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 8px;
+  background: #777777;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  height: 1em;
+  width: 1em;
+  border-radius: 20%;
+  background: #777777;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 8px;
+  background: #777777;
+  cursor: pointer;
+}
 
 .gameInfo{
 	display: flex;
@@ -38,6 +73,14 @@ h1{
 	height: 5vh;
 	border-bottom: 1px solid black;
 }
+
+.reset{
+	width: 30%;
+	height: 100%;
+	border: none;
+}
+
+
 
 #gameArea{
 /*	display: flex;

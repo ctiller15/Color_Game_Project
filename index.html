@@ -13,8 +13,17 @@
 		<p class="info">Info text</p>
 	</div>
 	<div class="adjustments">
-		<input type="number" placeholder="number of squares" step="3" min="3" max="15">
-		<input type="range" step="1" min="1" max="2" value="1">
+		<div class="numBoxes">
+			<button class="lower"><</button>
+			<p class="boxInfo"><span class="num">3</span> Boxes</p>
+			<!-- <input type="number" placeholder="number of squares" step="3" min="3" max="15"> -->
+			<button class="higher">></button>
+		</div>
+		<div class="rangeSlider">
+			<p class="easy">easy</p>
+			<input type="range" step="1" min="1" max="3" value="1">
+			<p class="hard">hard</p>
+		</div>
 	</div>
 	<div class="gameInfo">
 		<p class="score">Current Score: <span class="scoreVal">0</span> points</p>
