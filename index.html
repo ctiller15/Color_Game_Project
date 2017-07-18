@@ -3,17 +3,23 @@
 <head>
 	<title>Color Game</title>
 	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet"> 
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
-	<h1 class="title">Color game</h1>
-	<h2 class="color">Find: <span class="currentColor">RGB Color</span></h2>
-	<p class="info">Info text</p>
-	<p class="score">Current Score: <span class="scoreVal">0</span> points</p>
-	<input type="number" placeholder="number of squares" step="3" min="3" max="15">
-	<input type="range" step="1" min="1" max="2" value="1">
-	<button class="reset">Reset</button>
+	<div class="banner">
+		<h1 class="title">Color game</h1>
+		<h2 class="color">Find: <span class="currentColor">RGB Color</span></h2>
+		<p class="info">Info text</p>
+	</div>
+	<div class="adjustments">
+		<input type="number" placeholder="number of squares" step="3" min="3" max="15">
+		<input type="range" step="1" min="1" max="2" value="1">
+	</div>
+	<div class="gameInfo">
+		<p class="score">Current Score: <span class="scoreVal">0</span> points</p>
+		<button class="reset">Reset</button>
+	</div>
 	<div id="gameArea"></div>
 
 	<script type="text/javascript" src="jquery/jquery-3.2.1.js"></script>

@@ -1,5 +1,42 @@
+/*Doing some css resetting, and setting the default font.*/
+
+*{
+	font-family: "Open Sans", Lato;
+	margin: 0;
+	padding: 0;
+}
+
+.banner{
+	height: 10vh;
+	border-bottom: 1px solid black;
+}
+
 h1{
 	display: none;
+}
+
+.color{
+	text-align: center;
+	height: 40px;
+}
+
+.info{
+	height: 20px;
+	text-align: center;
+}
+
+.adjustments{
+	display: flex;
+	justify-content: space-around;
+	height: 5vh;
+	border-bottom: 1px solid black;
+}
+
+.gameInfo{
+	display: flex;
+	justify-content: space-around;
+	height: 5vh;
+	border-bottom: 1px solid black;
 }
 
 #gameArea{
