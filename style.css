@@ -4,6 +4,12 @@
 	font-family: "Open Sans", Lato;
 	margin: 0;
 	padding: 0;
+	border: none;
+}
+
+body{
+	background: #1B191F;
+	color: white;
 }
 
 .banner{
@@ -32,9 +38,17 @@ h1{
 	border-bottom: 1px solid black;
 }
 .numBoxes{
+	width: 50%;
 	display: flex;
+	justify-content: space-between;
 }
+
+.numBoxes button{
+	width: 20%;
+}
+
 .rangeSlider{
+	width: 50%;
 	display: flex;
 }
 
@@ -69,18 +83,20 @@ input[type=range]::-ms-thumb {
 
 .gameInfo{
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	height: 5vh;
 	border-bottom: 1px solid black;
 }
 
+.score{
+	width: 50%;
+}
+
 .reset{
-	width: 30%;
+	width: 45%;
 	height: 100%;
 	border: none;
 }
-
-
 
 #gameArea{
 /*	display: flex;
@@ -96,4 +112,5 @@ input[type=range]::-ms-thumb {
 	font-size: .75em;
 	text-align: center;
 	font-weight: bold;
+	border-radius: 20%;
 }
