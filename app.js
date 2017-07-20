@@ -4,6 +4,7 @@ var red;
 var green;
 var blue;
 var correctColor;
+var colList = [];
 
 // Initializing game variables
 var difficulty = 1;
@@ -54,17 +55,17 @@ function randomizeColors(sqList, diff){
 
 // Picks a single color out of the existing colors, and makes that value the correct answer.
 function pickSquare(sqList){
-	var pickedSquare = $(sqList[Math.floor(Math.random() * sqList.length)]);
-	var sqColor = pickedSquare.css("background-color");
-	colorHead.text("Find: " + pickedSquare.css("background-color"));
+	var sqColor = sqList[Math.floor(Math.random() * sqList.length)];
+	colorHead.text("Find: " + sqColor);
 	return sqColor;	
 }
 
 // Something weird going on here. Check it later!
 function resetColors(){
 	// Resets all of the colors for the game.
+	colList = [];
 	randomizeColors(squares, difficulty);
-	correctColor = pickSquare(squares);
+	correctColor = pickSquare(colList);
 }
 
 // Something weird going on here. Check it later!
@@ -103,9 +104,12 @@ function populateSquares(sqList, sr, sg, sb, rng){
 		green = limitColor(sg, rng);
 		blue = limitColor(sb, rng);
 		var rgbVal = "rgb(" + red + ", " + green + ", " + blue + ")";
+		colList.push(rgbVal);
 		square.style.backgroundColor = rgbVal;
-		var divwidth = $(".square").width();
-		$(".square").css("height", divwidth + "px");
+		// This chunk of code resizes squares and gets reused.
+		// var divwidth = $(".square").width();
+		// $(".square").css("height", divwidth + "px");
+		resizeSquare();
 	});		
 }
 
@@ -134,8 +138,9 @@ function setAnswer(){
 	});
 }
 
-function endGame(sqList){
-
+function resizeSquare(){
+	var divwidth = $(".square").width();
+	$(".square").css("height", divwidth + "px");
 }
 
 resetGame();
@@ -160,3 +165,6 @@ diffInput.on("change", function(e){
 	difficulty = Number(this.value);
 });
 
+window.onresize = function() {
+	resizeSquare();
+}
