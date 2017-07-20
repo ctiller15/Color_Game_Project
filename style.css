@@ -34,11 +34,11 @@ h1{
 
 .color{
 	text-align: center;
-	height: 40px;
+	height: 60%;
 }
 
 .info{
-	height: 20px;
+	height: 40%;
 	text-align: center;
 	font-weight: bold;
 }
@@ -60,7 +60,7 @@ h1{
 
 .boxInfo{
 	align-self: center;
-	font-size: 1.2em;
+	font-size: 110%;
 	font-weight: bold;
 }
 
@@ -69,8 +69,9 @@ h1{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	font-size: 1em;
+	font-size: 100%;
 	font-weight: bold;
+	padding-right: 3%;
 }
 
 .easy{
@@ -131,15 +132,15 @@ input[type=range]::-ms-track {
 }
 
 .score{
-	font-size: 1.3em;
+	font-size: 130%;
 	font-weight: bold;
 	align-self: center;
 	padding-left: 5%;
 	width: 50%;
 }
 
-.scoreVal{
-}
+/*.scoreVal{
+}*/
 
 .reset{
 	font-size: 1.3em;
@@ -178,7 +179,7 @@ button{
 #gameArea{
 /*	display: flex;
 	flex-wrap: wrap;*/
-	height: 80vh;
+	height: 71vh;
 	width: 70%;
 	margin: 0 auto;
 }
@@ -198,4 +199,34 @@ button{
     1px -1px 1 #FFF,
     -1px 1px 1 #FFF,
     1px 1px 1 #FFF;  
+}
+
+footer {
+	height: 9vh;
+	text-align: center;
+	background: #0D4A7A;
+}
+
+@media(min-height: 480px){
+	#gameArea{
+		width: 220px;
+	}
+}
+
+@media(min-height: 640px){
+	#gameArea{
+		width: 270px;
+	}
+}
+
+@media(min-height: 768px){
+	#gameArea{
+		width: 325px;
+	}
+}
+
+@media(min-height: 1024px){
+	#gameArea{
+		width: 370px;
+	}
 }
